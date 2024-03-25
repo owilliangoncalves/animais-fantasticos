@@ -1,3 +1,4 @@
+import debounce from './debounce';
 export default class AnimaNumeros {
   constructor(numeros, observerTarget, observerClass) {
     this.numeros = document.querySelectorAll(numeros);
@@ -5,7 +6,7 @@ export default class AnimaNumeros {
     this.observerClass = observerClass;
 
     // bind o this do objeto ao callback da mutação
-    this.handleMutation = this.handleMutation.bind(this);
+    this.handleMutation = debounce(this.handleMutation.bind(this), 50);
   }
 
   // Recebe um elemento do dom, com número em seu texto
